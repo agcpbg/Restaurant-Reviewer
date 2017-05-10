@@ -44,6 +44,7 @@ app.get('/api/city/:id', function (req, res, next) {
 });
 
 app.get('/api/restaurant/:id', function (req, res, next) {
+  console.log('req.params on server', req.params);
   models.Restaurant.findOne({
     where: { id: req.params.id }
   })

@@ -1,5 +1,5 @@
 import React from 'react';
-import { ScrollView, View, TextInput, Image, TouchableHighlight, StyleSheet } from 'react-native';
+import { ScrollView, View, Text, Image, TouchableHighlight, StyleSheet } from 'react-native';
 
 import { incrementRestaurantCount } from '../reducers/restaurantCount';
 

@@ -2,51 +2,36 @@ import React from 'react';
 import { AppRegistry } from 'react-native';
 import { Provider } from 'react-redux';
 import store from './app/store';
+import { StackNavigator } from 'react-navigation';
 
-import RootContainer from './app/components/Root';
+import CitiesContainer from './app/components/Cities';
+import SingleCityContainer from './app/components/SingleCity';
+import RestaurantContainer from './app/components/Restaurant';
 
-// export default class StackathonProject extends Component {
-//   render() {
-//     {console.log('inside of render function!!!')}
-//     return (
-//       <View style={styles.container}>
-//         <Text style={styles.welcome}>
-//           Welcome to React Native!
-//         </Text>
-//         <Text style={styles.instructions}>
-//           To get started, edit index.ios.js
-//         </Text>
-//         <Text style={styles.instructions}>
-//           Press Cmd+R to reload,{'\n'}
-//           Cmd+D or shake for dev menu
-//         </Text>
-//       </View>
-//     );
-//   }
-// }
-
-// const styles = StyleSheet.create({
-//   container: {
-//     flex: 1,
-//     justifyContent: 'center',
-//     alignItems: 'center',
-//     backgroundColor: '#F5FCFF',
-//   },
-//   welcome: {
-//     fontSize: 20,
-//     textAlign: 'center',
-//     margin: 10,
-//   },
-//   instructions: {
-//     textAlign: 'center',
-//     color: '#333333',
-//     marginBottom: 5,
-//   },
-// });
+const AppStackNavigator = StackNavigator({
+  Cities: {
+    screen: CitiesContainer,
+    navigationOptions: {
+        title: 'Select a City',
+    }
+  },
+  SingleCity: {
+    screen: SingleCityContainer,
+    navigationOptions: ({ navigation }) => ({
+        title: `${navigation.state.params.city.name}`,
+    })
+  },
+  Restaurant: {
+    screen: RestaurantContainer,
+    navigationOptions: ({ navigation }) => ({
+        title: `${navigation.state.params.restaurant.name}`,
+    })
+  },
+});
 
 const App = () => (
   <Provider store={store}>
-    <RootContainer />
+    <AppStackNavigator />
   </Provider>
 );
 
